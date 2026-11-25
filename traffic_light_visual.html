@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Traffic Light Controller</title>
+<style>
+body {
+    background: #20242b;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 100px;
+    margin-top: 40px;
+}
+.signal {
+    background: #111;
+    padding: 20px;
+    border-radius: 20px;
+    width: 75px;
+}
+.light {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: #444;
+    margin: 12px auto;
+}
+.red.on { background: red; box-shadow: 0 0 25px red; }
+.yellow.on { background: yellow; box-shadow: 0 0 25px yellow; }
+.green.on { background: lime; box-shadow: 0 0 25px lime; }
+</style>
+</head>
+<body>
+
+<h1>TRAFFIC LIGHT CONTROLLER</h1>
+<h3>Verilog FSM Visual Simulation</h3>
+
+<div class="container">
+<div>
+<h2>North - South</h2>
+<div class="signal">
+<div id="nr" class="light red"></div>
+<div id="ny" class="light yellow"></div>
+<div id="ng" class="light green"></div>
+</div>
+</div>
+
+<div>
+<h2>East - West</h2>
+<div class="signal">
+<div id="er" class="light red"></div>
+<div id="ey" class="light yellow"></div>
+<div id="eg" class="light green"></div>
+</div>
+</div>
+</div>
+
+<h2 id="status">System Starting</h2>
+
+<script>
+const states = [
+ ["green","red","NS GREEN - EW RED"],
+ ["yellow","red","NS YELLOW - EW RED"],
+ ["red","green","NS RED - EW GREEN"],
+ ["red","yellow","NS RED - EW YELLOW"]
+];
+
+let i = 0;
+
+function updateLights() {
+    const s = states[i];
+
+    document.querySelectorAll(".light").forEach(
+        light => light.classList.remove("on")
+    );
+
+    document.getElementById("n"+s[0][0]).classList.add("on");
+    document.getElementById("e"+s[1][0]).classList.add("on");
+
+    document.getElementById("status").innerText = s[2];
+
+    i = (i + 1) % states.length;
+}
+
+updateLights();
+setInterval(updateLights, 2000);
+</script>
+
+</body>
+</html>
+

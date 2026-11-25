@@ -1,0 +1,28 @@
+digraph Traffic_Controller {
+
+    rankdir=LR;
+
+    node [shape=box, style="rounded,filled",
+          fontname="Arial", fontsize=12];
+
+    CLK [label="CLOCK INPUT",
+         fillcolor="lightblue"];
+
+    RESET [label="RESET INPUT",
+           fillcolor="lightblue"];
+
+    FSM [label="FSM CONTROLLER\n(4 STATES)",
+         fillcolor="lightyellow",
+         width=2, height=1.2];
+
+    NS [label="NORTH - SOUTH\nTRAFFIC LIGHT\nRED / YELLOW / GREEN",
+        fillcolor="lightgreen"];
+
+    EW [label="EAST - WEST\nTRAFFIC LIGHT\nRED / YELLOW / GREEN",
+        fillcolor="lightgreen"];
+
+    CLK -> FSM;
+    RESET -> FSM;
+    FSM -> NS;
+    FSM -> EW;
+}

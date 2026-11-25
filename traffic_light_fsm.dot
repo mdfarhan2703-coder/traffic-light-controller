@@ -1,0 +1,25 @@
+digraph Traffic_Light_FSM {
+
+    rankdir=LR;
+
+    node [shape=box, style="rounded,filled",
+          fontname="Arial", fontsize=12,
+          color="black"];
+
+    S0 [label="STATE 0\nNS GREEN\nEW RED",
+        fillcolor="lightgreen"];
+
+    S1 [label="STATE 1\nNS YELLOW\nEW RED",
+        fillcolor="yellow"];
+
+    S2 [label="STATE 2\nNS RED\nEW GREEN",
+        fillcolor="lightgreen"];
+
+    S3 [label="STATE 3\nNS RED\nEW YELLOW",
+        fillcolor="yellow"];
+
+    S0 -> S1;
+    S1 -> S2;
+    S2 -> S3;
+    S3 -> S0;
+}
